@@ -11,7 +11,6 @@ def couleur(nombre=''):
       carte="carreau"
   return carte
 
-
 def valeur(nombre=''):
   carte=''
   match nombre:
@@ -27,10 +26,17 @@ def valeur(nombre=''):
     carte=nombre
   return carte
 
-test_valeur = valeur(1)
-test_couleur = couleur(3)
-print(test_valeur, test_couleur)
+def all_cards():
+  carte1=''
+  carte2=''
+  cartes=[]
+  for i in range(1,5):
+    carte2=couleur(i)
+    for j in range(1,14):
+      carte1=valeur(j)
+      cartes+=[f'{carte1} de {carte2}']
+  return cartes
 
-test_valeur2 = valeur(5)
-test_couleur2 = couleur(4)
-print(test_valeur2, test_couleur2)
+cartes = all_cards()
+for i in cartes:
+  print(i)
