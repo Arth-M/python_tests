@@ -1,10 +1,22 @@
 liste = [1, 43, 8, -23, 12, -67, 42, -8, 21, -12, -42, -61, 8, 17, 42]
 
-liste=[abs(val) for val in liste]
-for index, val in enumerate(liste):
-  if liste.count(val) > 1:
-    liste.pop(index)
+liste2 = [abs(val) for val in liste]
+# liste.sort()
+# print(liste2)
+set_test = set(liste2)
+# crée un set: un set possède des valeurs uniques,
+# au lieu de append il a la fonction add
+# for index, val in enumerate(liste2):
+#   if liste2.count(val) > 1:
+#     liste2.pop(index)
 
-liste.sort()
+print(set_test)
+print(set_test)
 
-print(liste)
+print(dir(set_test))
+# help(set.pop)
+
+set2 = {abs(val) for val in liste2}
+liste_finale = list(set2)
+liste_finale.sort()
+print(liste_finale)
