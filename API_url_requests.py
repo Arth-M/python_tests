@@ -7,12 +7,13 @@ python3 -m pydoc -b => génère un serveur local avec toute la doc
 de base de python ainsi que la doc qu'on a créée pour tous les fichiers
 python du current working directory"""
 
+import json  # pour gérer des json
 import requests  # pour les API
 import urllib.request  # pour scrapper
 import smtplib  # pour les mails
 import pprint  # pretty print
 import logging  # pour créer les logs
-import json  # pour gérer des json
+
 
 # import django  # web framework python
 import pydoc  # génère les documentations
@@ -68,8 +69,8 @@ for key, value in data.items():
 
 # api requests with 'requests'
 
-URL_NUMDIAG = "https://api.github.com"
-response = requests.get(URL_NUMDIAG)
+URL_GITHUB = "https://api.github.com"
+response = requests.get(URL_GITHUB)
 data = response.json()
 print(response.status_code)
 print(json.dumps(data, indent=4))
@@ -84,4 +85,15 @@ response = requests.get(URL_CHUCK, params=parametres)
 data = response.json()
 print(response.status_code)
 print(json.dumps(data, indent=4))
-print(data["value"])
+# print(data["value"])
+
+
+URL_PRENOMS = "https://api.agify.io"
+prenom = input("Entrez votre prénom").strip().lower()
+params={"name":prenom}
+response = requests.get(URL_PRENOMS, params=params)
+print(response.status_code)
+data = response.json()
+print(json.dumps(data, indent=4))
+
+print(data['age'])
