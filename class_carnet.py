@@ -1,3 +1,16 @@
+"""Utilisation des classes et de l'héritage
+*une classe mère Contact
+*deux classes enfants : PersonneSuivante et Organisation
+
+ATENTION : pour les classes enfants la gestion des
+__del__ des variables de classe de la classe mère doit
+être faite manuellement !
+
+*la dernière partie 'if __name__ == "__main__":'
+permet d'exécuter du code quand le module est lancé comme un script principal
+et non comme un module utilisé dans un autre script."""
+
+
 class Contact:
     nbre_contacts = 0
 
@@ -42,28 +55,28 @@ class Contact:
 
 class PersonneSuivante(Contact):
     nbre_personne = 0
+
     def __init__(self, tel, ad, pays="France", nom="Doe", prenom="John", age=33):
         self._nom = nom
         self._prenom = prenom
         self._age = age
         super().__init__(tel, ad, pays)
-        PersonneSuivante.nbre_personne+=1
+        PersonneSuivante.nbre_personne += 1
 
     def __del__(self):
-        PersonneSuivante.nbre_personne-=1
+        PersonneSuivante.nbre_personne -= 1
         super().__del__()
 
     @classmethod
     def combienTotal(cls):
         super().combien()
 
-
     def combien(cls):
         print("Il y a", cls.nbre_personne, "personne(s)")
 
 
 class Organisation(Contact):
-    def __init__(self, tel, ad, pays="France", raison_sociale = "World Company"):
+    def __init__(self, tel, ad, pays="France", raison_sociale="World Company"):
         self._raison_sociale = raison_sociale
         super().__init__(tel, ad, pays)
 
@@ -86,17 +99,16 @@ if __name__ == "__main__":
     del c2
     print(Contact.combien())
 
-
-    print('add a personne)')
-    p1 = PersonneSuivante(nom="Mich", prenom="Arth", age=37, tel=643, ad='place An')
+    print("add a personne)")
+    p1 = PersonneSuivante(nom="Mich", prenom="Arth", age=37, tel=643, ad="place An")
     print("Nom:", p1._nom)
     print("age", p1._age)
     print(p1.adresse)
     print(p1.combienTotal())
     print(p1.combien())
 
-    print('add a personne)')
-    p2 = PersonneSuivante(nom="Nono", prenom="Papa", age=51, tel=711, ad='Nizza')
+    print("add a personne)")
+    p2 = PersonneSuivante(nom="Nono", prenom="Papa", age=51, tel=711, ad="Nizza")
     print(p2.combienTotal())
     print(p2.combien())
     del p1
@@ -104,9 +116,9 @@ if __name__ == "__main__":
     print(p2.combienTotal())
     print(p2.combien())
 
-    o1 = Organisation(raison_sociale='Tutur Company', tel=9, ad='Middle East')
-    print('Orga 1 :', o1._raison_sociale)
+    o1 = Organisation(raison_sociale="Tutur Company", tel=9, ad="Middle East")
+    print("Orga 1 :", o1._raison_sociale)
     print(o1._adresse)
-    o2 = Organisation(tel=10, ad='Worldwide')
-    print('Orga 2 :', o2._raison_sociale)
+    o2 = Organisation(tel=10, ad="Worldwide")
+    print("Orga 2 :", o2._raison_sociale)
     print(o2._adresse)
