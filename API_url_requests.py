@@ -8,11 +8,14 @@ de base de python ainsi que la doc qu'on a créée pour tous les fichiers
 python du current working directory"""
 
 import json  # pour gérer des json
+import io
 import requests  # pour les API
 import urllib.request  # pour scrapper
 import smtplib  # pour les mails
 import pprint  # pretty print
 import logging  # pour créer les logs
+from PIL import Image
+
 
 
 # import django  # web framework python
@@ -93,6 +96,10 @@ prenom = input("Entrez votre prénom").strip().lower()
 params={"name":prenom}
 response = requests.get(URL_PRENOMS, params=params)
 print(response.status_code)
+print(f'https://http.cat/{response.status_code}')
+image_response = requests.get(f'https://http.cat/{response.status_code}')
+image = Image.open(io.BytesIO(image_response.content))
+image.show()
 data = response.json()
 print(json.dumps(data, indent=4))
 
