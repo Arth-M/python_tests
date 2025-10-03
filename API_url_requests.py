@@ -12,6 +12,7 @@ import urllib.request  # pour scrapper
 import smtplib  # pour les mails
 import pprint  # pretty print
 import logging  # pour créer les logs
+import json  # pour gérer des json
 
 # import django  # web framework python
 import pydoc  # génère les documentations
@@ -41,3 +42,24 @@ difference2 = (now1 - ok_back).days
 difference = (now - back_then).days
 print(difference)
 print(difference2)
+
+nom = input("Entrez votre nom")
+prenom = input("Entrez votre prénom")
+age = input("Entrez votre âge")
+liste_interet = input("Entrez votre liste d'intérêts")
+
+with open("profil.json", "w", encoding="utf-8") as json_file:
+    json_file.write(
+        json.dumps(
+            {"nom": nom, "prenom": prenom, "age": age, "liste_interet": liste_interet},
+            indent=2,
+        )
+    )
+
+with open("profil.json", "r", encoding="utf-8") as json_file:
+    data = json.load(json_file)
+
+print(json.dumps(data, indent=4))
+
+for key, value in data.items():
+    print(key, ":", value)
