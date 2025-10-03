@@ -7,7 +7,7 @@ python3 -m pydoc -b => génère un serveur local avec toute la doc
 de base de python ainsi que la doc qu'on a créée pour tous les fichiers
 python du current working directory"""
 
-# import requests #pour les API
+import requests  # pour les API
 import urllib.request  # pour scrapper
 import smtplib  # pour les mails
 import pprint  # pretty print
@@ -43,18 +43,19 @@ difference = (now - back_then).days
 print(difference)
 print(difference2)
 
-nom = input("Entrez votre nom")
-prenom = input("Entrez votre prénom")
-age = input("Entrez votre âge")
-liste_interet = input("Entrez votre liste d'intérêts")
+# nom = input("Entrez votre nom")
+# prenom = input("Entrez votre prénom")
+# age = input("Entrez votre âge")
+# liste_interet_str = input("Entrez votre liste d'intérêts")
+# liste_interet = [i.strip() for i in liste_interet2.split(",")]
 
-with open("profil.json", "w", encoding="utf-8") as json_file:
-    json_file.write(
-        json.dumps(
-            {"nom": nom, "prenom": prenom, "age": age, "liste_interet": liste_interet},
-            indent=2,
-        )
-    )
+# with open("profil.json", "w", encoding="utf-8") as json_file:
+#     json_file.write(
+#         json.dumps(
+#             {"nom": nom, "prenom": prenom, "age": age, "liste_interet": liste_interet},
+#             indent=2,
+#         )
+#     )
 
 with open("profil.json", "r", encoding="utf-8") as json_file:
     data = json.load(json_file)
@@ -63,3 +64,24 @@ print(json.dumps(data, indent=4))
 
 for key, value in data.items():
     print(key, ":", value)
+
+
+# api requests with 'requests'
+
+URL_NUMDIAG = "https://api.github.com"
+response = requests.get(URL_NUMDIAG)
+data = response.json()
+print(response.status_code)
+print(json.dumps(data, indent=4))
+
+
+# url_chuck = 'https://api.chucknorris.io/jokes/random'
+URL_CHUCK = "https://api.chucknorris.io/jokes/search"
+parametres = {"query": "captain"}
+headers = {...}
+# response = requests.get(url_chuck, params=parametres, headers=)
+response = requests.get(URL_CHUCK, params=parametres)
+data = response.json()
+print(response.status_code)
+print(json.dumps(data, indent=4))
+print(data["value"])

@@ -1,6 +1,10 @@
 {
-  "nom": "Mich",
-  "prenom": "Tutur",
-  "age": "76",
-  "liste_interet": "Bibi, Dodo"
+  "nom": "Michalland",
+  "prenom": "Arthur",
+  "age": "99",
+  "liste_interet": [
+    "Yoyo",
+    "B\u00e9b\u00e9",
+    "Doudou"
+  ]
 }
